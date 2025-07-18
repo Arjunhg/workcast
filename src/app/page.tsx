@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Sparkles, ArrowRight, Play, Users, TrendingUp, Briefcase, UserCheck, Calendar, MessageSquare, Target, Zap } from "lucide-react";
+import { ArrowRight, Play, Users, TrendingUp, Briefcase, UserCheck, Calendar, MessageSquare, Target, Zap } from "lucide-react";
 
 export default function Home() {
   return (

@@ -3,10 +3,12 @@
 import { vapiServer } from '@/lib/vapi/vapiServer'
 import { interviewAgentPrompt, firstMessage } from '@/lib/vapiConfig'
 
+export type ExperienceLevel = "junior" | "mid" | "senior"
+
 export interface HiringAgentConfig {
   name: string
   role?: string // e.g., "Frontend Developer", "Data Scientist", "Product Manager"
-  experience?: string // e.g., "junior", "mid", "senior"
+  experience?: ExperienceLevel // "junior", "mid", or "senior"
   customInstructions?: string
 }
 
@@ -26,7 +28,7 @@ export const createHiringAgent = async (config: HiringAgentConfig) => {
         senior: "Emphasize architecture decisions, leadership experience, and strategic thinking. Expect deep technical knowledge."
       }
       
-      customizedPrompt += `\n\n## Experience Level: ${config.experience.toUpperCase()}\n${experienceGuidance[config.experience as keyof typeof experienceGuidance]}`
+      customizedPrompt += `\n\n## Experience Level: ${config.experience.toUpperCase()}\n${experienceGuidance[config.experience]}`
     }
     
     if (config.customInstructions) {
@@ -142,44 +144,44 @@ export const hiringAgentTemplates = {
 }
 
 // Quick create functions for common roles
-export const createFrontendInterviewer = (name?: string, experience?: string) => 
+export const createFrontendInterviewer = (name?: string, experience?: ExperienceLevel) => 
   createHiringAgent({
     ...hiringAgentTemplates.frontendDeveloper,
     name: name || hiringAgentTemplates.frontendDeveloper.name,
-    experience: experience as any
+    experience
   })
 
-export const createBackendInterviewer = (name?: string, experience?: string) => 
+export const createBackendInterviewer = (name?: string, experience?: ExperienceLevel) => 
   createHiringAgent({
     ...hiringAgentTemplates.backendDeveloper,
     name: name || hiringAgentTemplates.backendDeveloper.name,
-    experience: experience as any
+    experience
   })
 
-export const createFullStackInterviewer = (name?: string, experience?: string) => 
+export const createFullStackInterviewer = (name?: string, experience?: ExperienceLevel) => 
   createHiringAgent({
     ...hiringAgentTemplates.fullStackDeveloper,
     name: name || hiringAgentTemplates.fullStackDeveloper.name,
-    experience: experience as any
+    experience
   })
 
-export const createDataScienceInterviewer = (name?: string, experience?: string) => 
+export const createDataScienceInterviewer = (name?: string, experience?: ExperienceLevel) => 
   createHiringAgent({
     ...hiringAgentTemplates.dataScientist,
     name: name || hiringAgentTemplates.dataScientist.name,
-    experience: experience as any
+    experience
   })
 
-export const createProductManagerInterviewer = (name?: string, experience?: string) => 
+export const createProductManagerInterviewer = (name?: string, experience?: ExperienceLevel) => 
   createHiringAgent({
     ...hiringAgentTemplates.productManager,
     name: name || hiringAgentTemplates.productManager.name,
-    experience: experience as any
+    experience
   })
 
-export const createDevOpsInterviewer = (name?: string, experience?: string) => 
+export const createDevOpsInterviewer = (name?: string, experience?: ExperienceLevel) => 
   createHiringAgent({
     ...hiringAgentTemplates.devOpsEngineer,
     name: name || hiringAgentTemplates.devOpsEngineer.name,
-    experience: experience as any
+    experience
   })

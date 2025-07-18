@@ -1,4 +1,4 @@
-import { Upload, Webcam, TrendingUp, Users, Sparkles, Briefcase, UserCheck, Target, Calendar, MessageSquare } from "lucide-react";
+import { TrendingUp, Users, Briefcase, UserCheck, Target, Calendar, MessageSquare } from "lucide-react";
 import FeatureCard from "./_components/FeatureCard";
 import FeatureSectionLayout from "./_components/FeatureSectionLayout";
 import Image from "next/image";
